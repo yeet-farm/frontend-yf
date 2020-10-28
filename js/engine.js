@@ -19,7 +19,7 @@ const Engine = function (timeStep, update, render) {
   this.update = update // The update function
   this.render = render // The render function
 
-  this.run = function(timeStamp) { // This is one cycle of the game loop
+  this.run = function (timeStamp) { // This is one cycle of the game loop
     this.accumulated_time += timeStamp - this.time
     this.time = timeStamp
 
@@ -38,7 +38,7 @@ const Engine = function (timeStep, update, render) {
     worth of time, and if multiple time steps have accumulated, we must update one
     time for each of them to stay up to speed. */
     while (this.accumulated_time >= this.timeStep) {
-      this.accumulated_time -= this.timeStep;
+      this.accumulated_time -= this.timeStep
       this.update(timeStamp)
       this.updated = true // If the game has updated, we need to draw it again.
     }
@@ -57,8 +57,8 @@ const Engine = function (timeStep, update, render) {
 Engine.prototype = {
   constructor: Engine,
   start: function () {
-    this.accumulated_time = this.timeStep;
-    this.time = window.performance.now();
+    this.accumulated_time = this.timeStep
+    this.time = window.performance.now()
     this.animationFrameRequest = window.requestAnimationFrame(this.handleRun)
   },
   stop: function () { window.cancelAnimationFrame(this.animationFrameRequest) }
