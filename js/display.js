@@ -5,6 +5,8 @@ a bit differently and draw rectangles to the buffer. */
 
 const Display = function (canvas) {
   this.buffer = document.createElement('canvas').getContext('2d')
+  this.buffer.canvas.height = HEIGHT
+  this.buffer.canvas.width = WIDTH
   this.context = canvas.getContext('2d')
   this.cropTexture = new Image()
   this.cropTexture.src = 'img/dirt.svg'
@@ -15,7 +17,7 @@ const Display = function (canvas) {
   }
 
   this.drawCrop = function (x, y) {
-    this.buffer.drawImage(this.cropTexture, x, y, 16, 16)
+    this.buffer.drawImage(this.cropTexture, x, y, TILE_SIZE, TILE_SIZE)
   }
 
   this.fill = function (color) {
