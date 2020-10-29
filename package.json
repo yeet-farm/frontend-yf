@@ -1,0 +1,27 @@
+{
+  "name": "frontend-yf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/index.js",
+  "devDependencies": {
+    "standard": "*"
+  },
+  "scripts": {
+    "test": "npx standard"
+  },
+  "standard": {
+    "globals": [
+      "Image",
+      "Engine",
+      "Display",
+      "HEIGHT",
+      "WIDTH",
+      "TILE_SIZE",
+      "NUM_COLS",
+      "NUM_ROWS"
+    ]
+  },
+  "keywords": [],
+  "author": "ChillerDragon",
+  "license": "Unlicense"
+}

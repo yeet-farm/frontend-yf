@@ -30,8 +30,8 @@ function resize () {
   display.render()
 }
 
-var display = new Display(document.querySelector('canvas'))
-var engine = new Engine(1000 / 30, render, update)
+const display = new Display(document.querySelector('canvas'))
+const engine = new Engine(1000 / 30, render, update)
 
 window.addEventListener('resize', resize)
 
