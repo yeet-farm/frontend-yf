@@ -21,4 +21,6 @@ body {
 
 canvas {
   image-rendering: pixelated;
+  border: 10px solid #7a4d36;
+  border-radius: 1%;
 }

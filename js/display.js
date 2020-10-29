@@ -8,12 +8,18 @@ const Display = function (canvas) {
   this.buffer.canvas.height = HEIGHT
   this.buffer.canvas.width = WIDTH
   this.context = canvas.getContext('2d')
+  this.dirtTexture = new Image()
   this.cropTexture = new Image()
-  this.cropTexture.src = 'img/dirt.svg'
+  this.dirtTexture.src = 'img/dirt.svg'
+  this.cropTexture.src = 'img/crop.svg'
 
   this.drawRectangle = function (x, y, width, height, color) {
     this.buffer.fillStyle = color
     this.buffer.fillRect(Math.floor(x), Math.floor(y), width, height)
+  }
+
+  this.drawDirt = function (x, y) {
+    this.buffer.drawImage(this.dirtTexture, x, y, TILE_SIZE, TILE_SIZE)
   }
 
   this.drawCrop = function (x, y) {
