@@ -5,7 +5,8 @@
 //     .then(data => console.log(data))
 //     .catch(error => console.log(`ERROR: ${error}`));
 
-const TILE_SIZE = 512
+// values higher than 341 cause my iOS safari to stop rendering
+const TILE_SIZE = 256
 const NUM_ROWS = 9
 const NUM_COLS = 16
 const HEIGHT = TILE_SIZE * NUM_ROWS
