@@ -21,7 +21,7 @@ function render () {
   }
   for (let x = 0; x < NUM_COLS; x++) {
     for (let y = 1; y < NUM_ROWS; y++) {
-      display.drawCrop(x * TILE_SIZE, y * TILE_SIZE - 256)
+      display.drawCrop(x * TILE_SIZE, y * TILE_SIZE - (TILE_SIZE / 2))
     }
   }
   display.render()

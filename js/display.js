@@ -32,7 +32,7 @@ const Display = function (canvas) {
   }
 
   this.render = function () {
-    this.context.drawImage(this.buffer.canvas, 0, 0, this.buffer.canvas.width, this.buffer.canvas.height, 0, 0, this.context.canvas.width, this.context.canvas.height)
+    this.context.drawImage(this.buffer.canvas, 0, 0, WIDTH, HEIGHT, 0, 0, this.context.canvas.width, this.context.canvas.height)
   }
 
   this.resize = function (width, height, heightWidthRatio) {
