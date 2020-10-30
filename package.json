@@ -18,7 +18,10 @@
       "WIDTH",
       "TILE_SIZE",
       "NUM_COLS",
-      "NUM_ROWS"
+      "NUM_ROWS",
+      "zoom",
+      "scrollX",
+      "scrollY"
     ]
   },
   "keywords": [],

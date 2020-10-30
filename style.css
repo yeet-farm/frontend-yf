@@ -9,18 +9,30 @@ html {
   width: 100%;
 }
 
-body {
-  align-content: center;
-  align-items: space-around;
-  background-color: #8a563c;
-  display: grid;
-  justify-items: center;
-  height: 100%;
-  width: 100%;
-}
-
 canvas {
   image-rendering: pixelated;
   border: 10px solid #7a4d36;
   border-radius: 1%;
+}
+
+.content {
+  background-color: #8a563c;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  align-items: space-around;
+  justify-items: center;
+  align-content: center;
+}
+
+.zoom {
+  height: 50px;
+  width: 50px;
+  border: 10px solid black;
+}
+
+.scroll {
+  height: 50px;
+  width: 50px;
+  border: 10px solid rgb(119, 119, 119);
 }
