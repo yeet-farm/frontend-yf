@@ -5,17 +5,6 @@
 }
 
 html {
-  height: 100%;
-  width: 100%;
-}
-
-canvas {
-  image-rendering: pixelated;
-  border: 10px solid #7a4d36;
-  border-radius: 1%;
-}
-
-.content {
   background-color: #8a563c;
   height: 100%;
   width: 100%;
@@ -25,14 +14,8 @@ canvas {
   align-content: center;
 }
 
-.zoom {
-  height: 50px;
-  width: 50px;
-  border: 10px solid black;
-}
-
-.scroll {
-  height: 50px;
-  width: 50px;
-  border: 10px solid rgb(119, 119, 119);
+canvas {
+  image-rendering: pixelated;
+  border: 10px solid #7a4d36;
+  border-radius: 1%;
 }
