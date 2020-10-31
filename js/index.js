@@ -27,7 +27,7 @@ function getCursorPositionScreen (canvas, event) {
 function getCursorPositionWorld (canvas, event) {
   const rect = canvas.getBoundingClientRect()
   const x = event.clientX - rect.left - display.scrollX * display.ratio()
-  const y = event.clientY - rect.top
+  const y = event.clientY - rect.top - display.scrollY * display.ratio()
   console.log('x: ' + x + ' y: ' + y + ' canvas.w: ' + canvas.width + ' canvas.h: ' + canvas.height + ' ratio: ' + display.ratio())
   const tileWidth = (canvas.width * display.zoom) / NUM_COLS
   const tileX = Math.floor(x / tileWidth)
