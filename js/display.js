@@ -30,11 +30,17 @@ const Display = function (canvas) {
   }
 
   this.drawDirt = function (x, y) {
-    this.buffer.drawImage(this.dirtTexture, x, y, TILE_SIZE, TILE_SIZE)
+    this.buffer.drawImage(
+      this.dirtTexture, x * this.zoom + this.scrollX, y * this.zoom + this.scrollY,
+      TILE_SIZE * this.zoom, TILE_SIZE * this.zoom
+    )
   }
 
   this.drawCrop = function (x, y) {
-    this.buffer.drawImage(this.cropTexture, x, y, TILE_SIZE, TILE_SIZE)
+    this.buffer.drawImage(
+      this.cropTexture, x * this.zoom + this.scrollX, y * this.zoom + this.scrollY,
+      TILE_SIZE * this.zoom, TILE_SIZE * this.zoom
+    )
   }
 
   this.zoomPlus = function () {
@@ -83,9 +89,12 @@ const Display = function (canvas) {
   this.drawUI = function () {
     for (let i = 0; i < this.uiElements.length; i++) {
       const element = this.uiElements[i]
-      const x = TILE_SIZE * element.x - this.scrollX * (this.buffer.canvas.width / this.context.canvas.width)
-      this.drawRectangle(x, TILE_SIZE * element.y, TILE_SIZE / this.zoom, TILE_SIZE / this.zoom, '#000000ff')
+      const x = TILE_SIZE * element.x
+      this.drawRectangle(x, TILE_SIZE * element.y, TILE_SIZE, TILE_SIZE, '#000000ff')
     }
+    this.buffer.font = '65px monospace'
+    this.buffer.fillText('scrollX: ' + this.scrollX + ' scrollY: ' + this.scrollY, 10, 128)
+    this.buffer.fillText('zoom: ' + this.zoom, 10, 256)
   }
 
   this.fill = function (color) {
@@ -93,11 +102,15 @@ const Display = function (canvas) {
     this.buffer.fillRect(0, 0, this.buffer.canvas.width, this.buffer.canvas.height)
   }
 
+  this.ratio = function () {
+    return this.context.canvas.width / this.buffer.canvas.width
+  }
+
   this.render = function () {
     this.context.fillStyle = '#8a563cff'
     this.context.fillRect(0, 0, this.context.canvas.width, this.context.canvas.height)
     this.drawUI()
-    this.context.drawImage(this.buffer.canvas, 0, 0, WIDTH, HEIGHT, this.scrollX, this.scrollY, this.context.canvas.width * this.zoom, this.context.canvas.height * this.zoom)
+    this.context.drawImage(this.buffer.canvas, 0, 0, WIDTH, HEIGHT, 0, 0, this.context.canvas.width, this.context.canvas.height)
   }
 
   this.resize = function (width, height, heightWidthRatio) {

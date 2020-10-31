@@ -26,13 +26,14 @@ function getCursorPositionScreen (canvas, event) {
 
 function getCursorPositionWorld (canvas, event) {
   const rect = canvas.getBoundingClientRect()
-  const x = event.clientX - rect.left - display.scrollX
-  const y = event.clientY - rect.top - display.scrollY
-  // console.log('x: ' + x + ' y: ' + y + ' canvas.w: ' + canvas.width + ' canvas.h: ' + canvas.height)
+  const x = event.clientX - rect.left - display.scrollX * display.ratio()
+  const y = event.clientY - rect.top
+  console.log('x: ' + x + ' y: ' + y + ' canvas.w: ' + canvas.width + ' canvas.h: ' + canvas.height + ' ratio: ' + display.ratio())
   const tileWidth = (canvas.width * display.zoom) / NUM_COLS
   const tileX = Math.floor(x / tileWidth)
   const tileY = Math.floor(y / tileWidth)
-  // console.log('tileW: ' + tileWidth + ' tileX: ' + tileX + ' tileY: ' + tileY)
+  display.drawRectangle(x, y, TILE_SIZE, TILE_SIZE, '#000000ff')
+  console.log('tileW: ' + tileWidth + ' tileX: ' + tileX + ' tileY: ' + tileY)
   return [tileX, tileY]
 }
 
