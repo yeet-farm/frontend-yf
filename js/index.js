@@ -32,7 +32,7 @@ function getCursorPosition (canvas, event) {
 }
 
 const canvas = document.querySelector('canvas')
-canvas.addEventListener('mousedown', function(e) {
+canvas.addEventListener('mousedown', function (e) {
   const tile = getCursorPosition(canvas, e)
   FARM[tile[0]][tile[1]] = 1
 })
