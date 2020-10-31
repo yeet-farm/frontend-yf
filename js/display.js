@@ -10,8 +10,20 @@ const Display = function (canvas) {
   this.context = canvas.getContext('2d')
   this.dirtTexture = new Image()
   this.cropTexture = new Image()
+  this.uiTextureLeft = new Image()
+  this.uiTextureRight = new Image()
+  this.uiTextureUp = new Image()
+  this.uiTextureDown = new Image()
+  this.uiTexturePlus = new Image()
+  this.uiTextureMinus = new Image()
   this.dirtTexture.src = 'img/dirt.svg'
   this.cropTexture.src = 'img/crop.svg'
+  this.uiTextureLeft.src = 'img/left.svg'
+  this.uiTextureRight.src = 'img/right.svg'
+  this.uiTextureUp.src = 'img/up.svg'
+  this.uiTextureDown.src = 'img/down.svg'
+  this.uiTexturePlus.src = 'img/plus.svg'
+  this.uiTextureMinus.src = 'img/minus.svg'
   this.zoom = 1
   this.zoomIndex = 2
   this.ZOOMS = [0.25, 0.5, 1, 1.5, 1.75]
@@ -20,6 +32,8 @@ const Display = function (canvas) {
   this.uiElements = [
     { x: NUM_COLS - 3, y: 1, name: 'left' },
     { x: NUM_COLS - 1, y: 1, name: 'right' },
+    { x: NUM_COLS - 2, y: 0, name: 'up' },
+    { x: NUM_COLS - 2, y: 2, name: 'down' },
     { x: NUM_COLS - 3, y: 2, name: 'zoom plus' },
     { x: NUM_COLS - 1, y: 2, name: 'zoom minus' }
   ]
@@ -65,6 +79,10 @@ const Display = function (canvas) {
     this.scrollY -= 100
   }
 
+  this.scrollUp = function () {
+    this.scrollY += 100
+  }
+
   this.uiClick = function (x, y) {
     for (let i = 0; i < this.uiElements.length; i++) {
       if (this.uiElements[i].x === x && this.uiElements[i].y === y) {
@@ -73,6 +91,12 @@ const Display = function (canvas) {
           return 1
         } else if (this.uiElements[i].name === 'left') {
           this.scrollLeft()
+          return 1
+        } else if (this.uiElements[i].name === 'up') {
+          this.scrollUp()
+          return 1
+        } else if (this.uiElements[i].name === 'down') {
+          this.scrollDown()
           return 1
         } else if (this.uiElements[i].name === 'zoom plus') {
           this.zoomPlus()
@@ -90,7 +114,22 @@ const Display = function (canvas) {
     for (let i = 0; i < this.uiElements.length; i++) {
       const element = this.uiElements[i]
       const x = TILE_SIZE * element.x
-      this.drawRectangle(x, TILE_SIZE * element.y, TILE_SIZE, TILE_SIZE, '#000000ff')
+      const y = TILE_SIZE * element.y
+      if (this.uiElements[i].name === 'right') {
+        this.buffer.drawImage(this.uiTextureRight, x, y, TILE_SIZE, TILE_SIZE)
+      } else if (this.uiElements[i].name === 'left') {
+        this.buffer.drawImage(this.uiTextureLeft, x, y, TILE_SIZE, TILE_SIZE)
+      } else if (this.uiElements[i].name === 'up') {
+        this.buffer.drawImage(this.uiTextureUp, x, y, TILE_SIZE, TILE_SIZE)
+      } else if (this.uiElements[i].name === 'down') {
+        this.buffer.drawImage(this.uiTextureDown, x, y, TILE_SIZE, TILE_SIZE)
+      } else if (this.uiElements[i].name === 'zoom plus') {
+        this.buffer.drawImage(this.uiTexturePlus, x, y, TILE_SIZE, TILE_SIZE)
+      } else if (this.uiElements[i].name === 'zoom minus') {
+        this.buffer.drawImage(this.uiTextureMinus, x, y, TILE_SIZE, TILE_SIZE)
+      } else {
+        this.drawRectangle(x, y, TILE_SIZE, TILE_SIZE, '#000000ff')
+      }
     }
     this.buffer.font = '65px monospace'
     this.buffer.fillText('scrollX: ' + this.scrollX + ' scrollY: ' + this.scrollY, 10, 128)
